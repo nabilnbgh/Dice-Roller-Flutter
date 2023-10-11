@@ -4,7 +4,7 @@ import 'package:first_app/gradient_container.dart';
 void main() {
   runApp(
     const MaterialApp(
-      title: "Astri App",
+      title: "The Dice Roller App",
       home: Scaffold(
         body: GradientContainer(
           listColor: [
