@@ -18,19 +18,20 @@ class _DiceRollerState extends State<DiceRoller> {
 //properties
   var diceNum = 1;
   String dicePath = '';
-  String? colorName;
+  late String colorName;
 //methods
   void rollDice() {
     setState(() {
       //random from 0 to 5
       diceNum = randomizer.nextInt(6) + 1;
-      setDiceImage(colorName!);
+      setDiceImage(colorName);
     });
   }
 
-  void setDiceImage(String colorName) {
+  void setDiceImage(String name) {
+    colorName = name;
     setState(() {
-      switch (colorName) {
+      switch (name) {
         case 'Black':
           dicePath = 'assets/images/dice_black_$diceNum.png';
         case 'Yellow':
@@ -57,7 +58,8 @@ class _DiceRollerState extends State<DiceRoller> {
   @override
   void initState() {
     super.initState();
-    dicePath = 'assets/images/dice_$diceNum.png';
+    colorName = "Default";
+    setDiceImage(colorName);
   }
 
   @override
@@ -82,13 +84,13 @@ class _DiceRollerState extends State<DiceRoller> {
         ),
         TextButton(
           onPressed: () async {
-            colorName = await Navigator.push(
+            String? name = await Navigator.push(
                 context,
                 MaterialPageRoute(
                     builder: (context) => const ChooseDicePage()));
-            if (colorName != null) {
-              setDiceImage(colorName!);
-            }
+            if (name != null) {
+              setDiceImage(name);
+            } else {}
           },
           style: TextButton.styleFrom(
             foregroundColor: Colors.white,

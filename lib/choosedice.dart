@@ -70,6 +70,7 @@ class _ChooseDicePageState extends State<ChooseDicePage> {
                       ),
                     )
                   : SizedBox(
+                      height: size.height - AppBar().preferredSize.height,
                       child: ListView.builder(
                         shrinkWrap: true,
                         itemBuilder: (context, index) {
